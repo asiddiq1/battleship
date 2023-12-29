@@ -93,7 +93,7 @@ const playerGameboard = (() => {
             
         }
         count = 0;
-        allShips.ships = []
+        allShips.ships = [];
 
     };
 
@@ -274,6 +274,7 @@ async function clickEnemyGrid(e){
         if (checkWinner()){
             let winner = getWinner()
             createModal(winner);
+            hideWaitingIndicator();
             restartGame();
             return;
         }
@@ -282,7 +283,9 @@ async function clickEnemyGrid(e){
             try{
                 await delay(500);
                 await waitForOtherPlayer();
-                enableUI();
+                if (!checkWinner()){
+                    enableUI();
+                }
                 hideWaitingIndicator();
     
             }
@@ -400,10 +403,13 @@ function addPlayerSpot(cell, hit){
         playerGameboard.updateScore(); //if computer hits update score
         cell.append(svg);
         if (checkWinner()){
+            disableUI();
             let winner = getWinner();
             createModal(winner);
+            hideWaitingIndicator();
             restartGame();
-            disableUI();
+            return;
+            
             //enable modal 
         }
 
@@ -672,7 +678,10 @@ function rotateEvent(){
 function getAxis(){
     
     let rotate = document.querySelector(".rotate");
-    return rotate.dataset.axis;
+    if (rotate){
+        return rotate.dataset.axis;
+    }
+    
 }
 
 function hoverShipLength(e){
@@ -1165,4 +1174,4 @@ export {
     submitGrid
 };
 
-addPregame();
+resetGame();

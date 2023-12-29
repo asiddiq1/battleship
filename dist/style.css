@@ -673,19 +673,19 @@ svg{
     }
 
     .img-tf img, .img-enemy-tf img{
-        width: 95px;
+        width: 85px;
         height: 27px;
         
     }
         
     .img-tf-y img, .img-enemy-tf-y img{
         width: 27px;
-        height: 105px;       
+        height: 85px;       
     }
     
     
     .img-ls img, .img-enemy-ls img{
-        width: 95px;
+        width: 85px;
         height: 35px;
      
     }
@@ -693,7 +693,7 @@ svg{
     
     .img-ls-y img, .img-enemy-ls-y img{
         width: 35px;
-        height: 105px;        
+        height: 85px;        
     }
     
     .img-xw img, .img-enemy-xw img{
