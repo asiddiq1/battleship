@@ -1,0 +1,623 @@
+:root{
+    font-family: "Chakra Petch", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.battleship-app{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.pregame-section{
+    background-color: rgba(189, 189, 177, 0.1); 
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    opacity: 1;
+    width: 30%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    animation: fadeIn 1.5s;
+    z-index: 3;
+
+
+}
+
+
+.title{
+    font-size: 3em;
+    font-family: "Chakra Petch", sans-serif;
+    letter-spacing: 2px;
+    -webkit-text-stroke:black;
+    text-align: center;
+    color: white;
+    background: -webkit-linear-gradient(#eee, #FBE6BF, #FCD48F, #FDC360, #FEB130);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+
+}
+
+
+.name-form .input-border{
+  
+    height: 2px;
+    width: 0px;
+    background-color: darkgrey;
+    display: inline-block;
+    position: relative;
+    bottom: 14px;
+
+}
+
+.name-form input[type=text]:focus {
+    outline: none;
+    caret-color: white;
+    color: #FBE6BF;
+    
+  }
+
+
+.name-form input[type=text]:not(:focus){
+    color: darkgrey;
+
+}
+
+.name-form input[type=text]:focus+.input-border {
+    width: 100%;
+    background-color: white;
+    transition: .3s width ease-in-out;
+ 
+  }
+
+.name-form input[type=text] {
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.4rem 0 0.4rem;
+    letter-spacing: 1px;
+  }
+
+.enter-game{
+
+    padding: 0.5rem 2rem;
+    background-color: rgba(255, 255, 255, 0.2); 
+    font-size: 1.2rem;
+    font-family: "Chakra Petch", sans-serif;
+    color: darkgrey;
+    border-radius: 5px;
+    position: relative;
+    bottom: 15%;
+    border: 2px solid transparent; 
+    bottom: 4rem;
+
+}
+
+.name-form{
+    position: relative;
+    bottom: 2rem;
+}
+
+
+.enter-game:hover{
+
+    border: 2px solid darkgrey;
+    color: #FCD48F;
+
+}
+
+.name-input::placeholder{
+    font-family: "Chakra Petch", sans-serif;
+}  
+
+
+@keyframes move-clouds-back {
+    from {
+        background-position: 0px 0px;
+    }
+    to {
+        background-position: 10000px 0px;
+    }
+    
+}
+
+
+@keyframes move-twinkle-back {
+    from {
+        background-position: 0px 0px;
+    }
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+.stars, .twinkling, .clouds{
+    position: absolute;
+    top: 0;
+    left: 0; 
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+.stars{
+    background: #000 url(./images/background/stars.png) repeat top center;
+    z-index: 0;
+}
+
+.twinkling{
+    background: transparent url(./images/background/twinkling.png) repeat top center;
+    z-index: 1;
+    animation: move-twinkle-back 200s linear infinite;
+}
+
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+
+
+@media (min-width: 300px) and (max-width: 720px) {
+
+    .title{
+        font-size: 2.5em;
+    }
+
+    .enter-game{
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+
+    }
+    .pregame-section{
+        width: 50%;
+        height: 30%
+    }
+
+
+
+
+}
+
+
+.game-setup{
+
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    width: 800px;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    animation: fadeIn 2s;
+
+}
+
+
+.rotate{
+    padding: 0.5rem 2rem;
+    background-color: rgba(255, 255, 255, 0.2); 
+    font-size: 1.2rem;
+    font-family: "Chakra Petch", sans-serif;
+    color: #FCD48F;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    width: 20%;
+    cursor: pointer;
+
+}
+
+.rotate-info{
+    color: white;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 0.8rem;
+}
+
+.gameboard{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    gap: 3rem;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(10, 45px);
+    height: 450px;
+    border: 3px solid rgba(0, 0, 0, 0.1); 
+    grid-gap: 2px;
+    position: relative;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.2); 
+    padding: 5px;
+  }
+
+
+.ships{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 400px;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px;
+    align-items: center;
+    padding: 25px 20px;
+}
+
+.rotate:hover, .reset:hover, .submit:hover{
+    background-color: rgba(255, 255, 255, 0.1); 
+
+}
+
+.submit:hover{
+    border: 1px solid darkgrey;
+
+}
+
+.rotate:active, .reset:active, .submit:active{
+    transform: translateY(2px);
+  }
+
+.ships .card{
+    width: 120px;
+    height: 100px;
+    background-color: rgba(11, 9, 9, 0.1); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    border: 1px solid rgba(11, 9, 9, 0.1);
+    cursor: pointer;
+
+}
+
+
+.ships .card img{
+    width: 65px;
+    height: 55px;
+
+}
+
+.ships .card:hover{
+    background-color: rgba(0, 0, 0, 0.1); 
+    color: #FCD48F;
+
+    
+}
+
+.ships .card.active{
+    border: 1px solid darkgrey;
+}
+
+
+
+.reset, .submit{
+    padding: 0.3rem 1rem;
+    background-color: rgba(255, 255, 255, 0.2); 
+    font-size: 1.2rem;
+    font-family: "Chakra Petch", sans-serif;
+    color: #FCD48F;
+    border-radius: 5px;
+    width: 60%;
+    cursor: pointer;
+    text-align: center;
+    place-self: center;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+}
+
+.submit{
+    display: block;
+    animation: fadeIn 2s;
+
+}
+
+.cell{
+    position: relative;
+}
+
+@-webkit-keyframes blink{
+    0%{opacity:1}
+    50%{opacity:.1}
+    100%{opacity:1}
+}
+@keyframes blink{0%{opacity:1}50%{opacity:.6}100%{opacity:1}}
+
+.img-mf, .img-enemy-mf{
+    position: absolute;
+    z-index: -5;
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+}
+
+.img-mf img, .img-enemy-mf img{
+    width: 62px;
+    height: 42px;
+    background-color: transparent !important;  
+    
+    
+}
+
+.img-mf-y, .img-enemy-mf-y{
+    position: absolute;
+    z-index: -5;
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+}
+
+.img-mf-y img, .img-enemy-mf-y img{
+    width: 45px;
+    height: 70px;
+    background-color: transparent !important;  
+    
+}
+
+
+.img-tf, .img-enemy-tf{
+    position: absolute;
+    z-index: -5;
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+}
+
+.img-tf img, .img-enemy-tf img{
+    width: 120px;
+    height: 42px;
+    background-color: transparent !important;  
+    
+}
+
+.img-tf-y, .img-enemy-tf-y{
+    position: absolute;
+    z-index: -5;  
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+}
+
+.img-tf-y img, .img-enemy-tf-y img{
+    width: 42px;
+    height: 120px;
+    background-color: transparent !important;  
+    
+}
+
+.img-ls, .img-enemy-ls{
+    position: absolute;
+    z-index: -5;  
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+}
+
+.img-ls img, .img-enemy-ls img{
+    width: 120px;
+    height: 50px;
+    background-color: transparent !important;  
+    
+}
+
+
+.img-ls-y, .img-enemy-ls-y{
+    position: absolute;
+    z-index: -5;
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+}
+
+
+
+.img-ls-y img, .img-enemy-ls-y img{
+    width: 50px;
+    height: 120px;
+    background-color: transparent !important;  
+    
+}
+
+.img-xw, .img-enemy-xw{
+    position: absolute;
+    z-index: -5; 
+    background-color: transparent !important;
+    -webkit-animation: blink 2s infinite linear;
+
+
+}
+
+.img-xw img, .img-enemy-xw img{
+    width: 70px;
+    height: 40px;
+    background-color: transparent !important;  
+
+    
+}
+
+
+.img-xw-y, .img-enemy-xw-y{
+    position: absolute;
+    z-index: -5;
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+}
+
+.img-xw-y img, .img-enemy-xw-y img{
+    width: 40px;
+    height: 70px;
+    background-color: transparent !important;  
+    
+}
+
+.img-yw, .img-enemy-yw{
+    position: absolute;
+    z-index: -5; 
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+
+}
+
+.img-yw img, .img-enemy-yw img{
+    width: 70px;
+    height: 40px;
+    background-color: transparent !important;
+ 
+    
+}
+
+.img-yw-y, .img-enemy-yw-y{
+    position: absolute;
+    z-index: -5;
+    background-color: transparent !important; 
+    -webkit-animation: blink 2s infinite linear;
+
+}
+
+.img-yw-y img, .img-enemy-yw-y img{
+    width: 40px;
+    height: 70px;
+    background-color: transparent !important;  
+    
+}
+
+
+.game-play{
+    display: flex;
+    gap: 4rem;
+    animation: fadeIn 2s;
+}
+
+
+.empire, .rebels{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.empire-header{
+    color: #7b7bd2;
+    align-self: flex-end;
+}
+
+.rebels-header{
+    color: #c95050;
+    align-self: flex-end;
+
+}
+
+.em.grid-container{
+    background: radial-gradient(circle, rgb(47 86 123 / 0%) 15%, rgb(48 144 208 / 10%) 60%, rgb(71 143 229 / 25%) 85%, rgb(76 133 216 / 40%) 100%);
+}
+
+.rb.grid-container{
+    background: radial-gradient(circle, rgb(36 0 0 / 0%) 15%, rgb(236 154 154 / 10%) 60%, rgb(245 145 145 / 25%) 85%, rgb(244 157 157 / 40%) 100%);
+}
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg{
+    position: absolute;
+    animation: fadeIn 2s;
+}
+
+
+.modal-popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: 50%;
+    background-color: rgb(14, 14, 26);
+    border-radius: 5px;
+    border: 1px solid whitesmoke;
+    z-index: 1;
+    transition: 0.2s ease-in-out; 
+    animation: fadeIn 1s;
+    box-shadow: 0 0 14px 7px whitesmoke;
+
+}
+
+.winner{
+    text-align: center;
+    color: #FCD48F;
+    font-size: 1.1rem;
+}
+
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    gap: 50px;
+
+}
+
+.restart{
+    padding: 0.3rem 1rem;
+    background-color: rgba(255, 255, 255, 0.2); 
+    font-size: 1.2rem;
+    font-family: "Chakra Petch", sans-serif;
+    color: #FCD48F;
+    border-radius: 5px;
+    width: 45%;
+    cursor: pointer;
+    text-align: center;
+    place-self: center;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+}
+
+.restart:hover{
+
+    border: 1px solid darkgrey;
+    color: #FCD48F;
+
+}
+
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    filter: brightness(0) saturate(100%) invert(46%) sepia(11%) saturate(2383%) hue-rotate(314deg) brightness(91%) contrast(116%);
+}
+
