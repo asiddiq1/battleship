@@ -21,8 +21,6 @@ export default function createGameSetup(){
 
     gameSetup.append(rotate, rotateInfo, gameboard);
     battleship.append(gameSetup)
-
-    // console.log(battleship);
 }    
 function createBoardGrid(){
     
